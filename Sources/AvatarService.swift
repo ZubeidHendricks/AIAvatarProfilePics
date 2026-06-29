@@ -62,7 +62,9 @@ struct OnDeviceAvatarService: AvatarGenerating {
         let request = VNGeneratePersonSegmentationRequest()
         request.qualityLevel = .balanced
         request.outputPixelFormat = kCVPixelFormatType_OneComponent8
-        try VNImageRequestHandler(cgImage: cg, options: [:]).perform([request])
+        // Person segmentation needs the Neural Engine and is unavailable on the
+        // Simulator; degrade gracefully to a full-frame stylization if it fails.
+        try? VNImageRequestHandler(cgImage: cg, options: [:]).perform([request])
 
         let stylized = stylize(input, style: style)
 

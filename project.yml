@@ -41,3 +41,26 @@ targets:
         SWIFT_VERSION: "5.0"
         GENERATE_INFOPLIST_FILE: NO
         CODE_SIGN_STYLE: Automatic
+
+  AIAvatarProfilePicsTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+      - path: Sources/AvatarService.swift
+    settings:
+      base:
+        PRODUCT_NAME: AIAvatarProfilePicsTests
+        PRODUCT_BUNDLE_IDENTIFIER: com.zubeid.aiavatarprofilepics.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+
+schemes:
+  Tests:
+    build:
+      targets:
+        AIAvatarProfilePicsTests: [test]
+    test:
+      targets:
+        - AIAvatarProfilePicsTests
